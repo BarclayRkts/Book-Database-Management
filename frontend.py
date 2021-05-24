@@ -4,28 +4,25 @@ class Person:
     def __init__(self, window):
         self.window = window
         self.window.title("Libary Management System")
-        self.window.geometry("1300x1000")
-        
-        # self.title_label = Label(
-        #                     window, 
-        #                     text="Libary Database Management System", 
-        #                     background='black',
-        #                     font=('Futura', 32),
-        #                     fg='white',
-        #                     width=55,
-        #                     height=2)
-        # self.title_label.grid(row=0, column=0, sticky=('N', 'S', 'E', 'W'), padx=5, pady=10)
+        self.window.geometry("800x800")
 
         MainFrame=Frame(self.window, bg="white")
         MainFrame.grid()  #THIS IS MAIN FRAME OUR WINDOW
         TitleFrame=Frame(MainFrame,bd=1,padx=55,pady=8,bg="black",relief=RIDGE)
-        TitleFrame.pack(side=TOP)#THIS IS STITLE FRAME
+        TitleFrame.pack(side=TOP)
+
+        DataFrameRight=LabelFrame(MainFrame,font=('arial',12,'bold'),bd=1,width=450,height=300,bg="Ghost White",relief=RIDGE,text="Book Details\n")
+        DataFrameRight.pack(side=BOTTOM, padx=20,pady=20) # This is for Book Details Box
         
+        ButtonFrame=Frame(MainFrame,bd=1,width=1350,height=70,padx=18,pady=10,bg="red",relief=RIDGE)
+        ButtonFrame.pack(side=BOTTOM)#
+
         DataFrame=Frame(MainFrame,bd=9,width=1300,height=400,padx=20,pady=20,bg="white",relief=RIDGE)
-        DataFrame.pack(side=BOTTOM)#THIS IS STI
+        DataFrame.pack(side=BOTTOM)
 
         DataFrameLeft=LabelFrame(DataFrame,font=('arial',12,'bold'),relief=RIDGE,text="Libary Membership Info:\n")
         DataFrameLeft.pack(side=LEFT)
+
 
         ##################### Inputs ################################
 
@@ -95,9 +92,32 @@ class Person:
         self.due_entry = Entry(DataFrameLeft, width=30)
         self.due_entry.grid(row=10, column=1)
 
+        ##################### Book Details Box ################################
 
-
+        bookList=Listbox(DataFrameRight,width=68,height=12,font=('arial',12,'bold'))
+        bookList.grid(row=0,column=0,padx=10)
         
+        ##################### Buttons ################################
+        self.add_btn = Button(ButtonFrame, text="Add Data", width=10, height=2)
+        self.add_btn.grid(row=0, column=0)
+
+        self.display_btn = Button(ButtonFrame, text="Display Data", width=10, height=2)
+        self.display_btn.grid(row=0, column=1)
+
+        self.clear_btn = Button(ButtonFrame, text="Clear Data", width=10, height=2)
+        self.clear_btn.grid(row=0, column=2)
+        
+        self.delete_btn = Button(ButtonFrame, text="Delete", width=10, height=2)
+        self.delete_btn.grid(row=0, column=3)
+
+        self.update_btn = Button(ButtonFrame, text="Update", width=10, height=2)
+        self.update_btn.grid(row=0, column=4)
+        
+        self.delete_btn = Button(ButtonFrame, text="Search Data", width=10, height=2)
+        self.delete_btn.grid(row=0, column=5)
+
+        self.exit_btn = Button(ButtonFrame, text="Exit", width=10, height=2)
+        self.exit_btn.grid(row=0, column=6)
 
 
 if __name__ == '__main__':

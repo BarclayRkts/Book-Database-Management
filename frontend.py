@@ -6,7 +6,7 @@ class Person:
     def __init__(self, window):
         self.window = window
         self.window.title("Libary Management System")
-        self.window.geometry("800x800")
+        self.window.geometry("1000x800")
 
 
         def addInfo():
@@ -26,11 +26,14 @@ class Person:
             insertion = db.insertInfo(data)
             
             if insertion != 1:
-                messagebox.showinfo("showInfo", "Data Entered Successfully")
+                messagebox.showinfo("Libary Management System", "Data Entered Successfully")
             else:
-                messagebox.showinfo("showInfo", "Something Went Wrong. Try Again!")
+                messagebox.showinfo("Libary Management System", "Something Went Wrong. Try Again!")
             
-            
+        def display():
+            results = db.displayInfo()
+            for row in results:
+                bookList.insert(END, row)
 
         MainFrame=Frame(self.window, bg="white")
         MainFrame.grid()  #THIS IS MAIN FRAME OUR WINDOW
@@ -113,14 +116,14 @@ class Person:
 
         ##################### Book Details Box ################################
 
-        bookList=Listbox(DataFrameRight,width=68,height=12,font=('arial',12,'bold'))
+        bookList=Listbox(DataFrameRight,width=100,height=12,font=('arial',12,'bold'))
         bookList.grid(row=0,column=0,padx=10)
         
         ##################### Buttons ################################
         self.add_btn = Button(ButtonFrame, text="Add Data", width=10, height=2, command=addInfo)
         self.add_btn.grid(row=0, column=0)
 
-        self.display_btn = Button(ButtonFrame, text="Display Data", width=10, height=2)
+        self.display_btn = Button(ButtonFrame, text="Display Data", width=10, height=2, command=display)
         self.display_btn.grid(row=0, column=1)
 
         self.clear_btn = Button(ButtonFrame, text="Clear Data", width=10, height=2)

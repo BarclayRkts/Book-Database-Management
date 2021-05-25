@@ -22,4 +22,9 @@ def insertInfo(data):
     except:
         return 1
 
-
+def displayInfo():
+    mycursor = mydb.cursor()
+    sql_info = "SELECT * FROM BookInformation"
+    mycursor.execute(sql_info)
+    result = mycursor.fetchall()
+    return result 

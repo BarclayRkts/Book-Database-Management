@@ -60,6 +60,7 @@ class Person:
         clicked = StringVar()
         clicked.set("         ")
         self.drop = OptionMenu(DataFrameLeft, clicked, "Administrator", "Staff", "Student")
+        self.drop.config(width=25, bg="white", justify=LEFT, anchor="w")
         self.drop.grid(row=0, column=1, sticky = W)
         
         self.firstName = Label(DataFrameLeft, text="First Name: ", justify=LEFT, anchor="w")

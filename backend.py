@@ -15,8 +15,11 @@ def createTable():
 
 def insertInfo(data):
     mycursor = mydb.cursor()
-    sql_insert = "INSERT INTO BookInformation VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-    mycursor.execute(sql_insert,data)
-    mydb.commit()
+    try:
+        sql_insert = "INSERT INTO BookInformation VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        mycursor.execute(sql_insert,data)
+        mydb.commit()
+    except:
+        return 1
 
 

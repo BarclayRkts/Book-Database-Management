@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import backend as db
 
 class Person:
@@ -10,7 +11,7 @@ class Person:
 
         def addInfo():
             id = 0
-            memType = self.member_entry.get()
+            memType = clicked.get()
             bookTitle = self.bookTitle_entry.get()
             firstName = self.firstName_entry.get()
             lastName = self.lastName_entry.get()
@@ -21,7 +22,14 @@ class Person:
             due = self.due_entry.get()
 
             data = (id, memType,firstName, lastName, phone, bookID,bookTitle, author, borrowed, due)
-            db.insertInfo(data)
+
+            insertion = db.insertInfo(data)
+            
+            if insertion != 1:
+                messagebox.showinfo("showInfo", "Data Entered Successfully")
+            else:
+                messagebox.showinfo("showInfo", "Something Went Wrong. Try Again!")
+            
             
 
         MainFrame=Frame(self.window, bg="white")
@@ -47,8 +55,12 @@ class Person:
         self.member_label = Label(DataFrameLeft, text="Membership Type: ", justify=LEFT, anchor="w")
         self.member_label.grid(row=0, column=0)
 
-        self.member_entry = Entry(DataFrameLeft, width=30)
-        self.member_entry.grid(row=0, column=1, sticky = W)
+        # self.member_entry = Entry(DataFrameLeft, width=30)
+        # self.member_entry.grid(row=0, column=1, sticky = W)
+        clicked = StringVar()
+        clicked.set("         ")
+        self.drop = OptionMenu(DataFrameLeft, clicked, "Administrator", "Staff", "Student")
+        self.drop.grid(row=0, column=1, sticky = W)
         
         self.firstName = Label(DataFrameLeft, text="First Name: ", justify=LEFT, anchor="w")
         self.firstName.grid(row=1, column=0, sticky = W)

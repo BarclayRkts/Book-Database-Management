@@ -1,3 +1,4 @@
+from os import set_blocking
 from tkinter import *
 from tkinter import messagebox
 import backend as db
@@ -30,6 +31,8 @@ class Person:
             else:
                 messagebox.showinfo("Libary Management System", "Something Went Wrong. Try Again!")
             
+            display()
+            
         def display():
             results = db.displayInfo()
             for row in results:
@@ -48,6 +51,43 @@ class Person:
             self.borrowed_entry.delete(0, END)
             self.due_entry.delete(0, END)
         
+        def delete():
+            display()
+            list_item = bookList.get(ANCHOR)
+            print(list_item)
+        
+        def selectedBox(event):
+            global sb 
+            #clickedBook = bookList.get(ANCHOR)
+            clickedBook = bookList.curselection()[0]
+            sb = bookList.get(clickedBook)
+
+            self.bookTitle_entry.delete(0, END)
+            self.bookTitle_entry.insert(END, sb[1])
+
+            self.firstName_entry.delete(0, END)
+            self.firstName_entry.insert(END, sb[2])
+            
+            self.lastName_entry.delete(0, END)
+            self.lastName_entry.insert(END, sb[3])
+
+            self.phone_entry.delete(0, END)
+            self.phone_entry.insert(END, sb[4])
+
+            self.bookID_entry.delete(0, END)
+            self.bookID_entry.insert(END, sb[5])
+
+            self.author_entry.delete(0, END)
+            self.author_entry.insert(END, sb[6])
+
+            self.borrowed_entry.delete(0, END)
+            self.borrowed_entry.insert(END, sb[7])
+
+            self.due_entry.delete(0, END)
+            self.due_entry.insert(END, sb[8])
+            
+            print(sb)
+
         def exit():
             window.destroy()
 
@@ -133,6 +173,7 @@ class Person:
         ##################### Book Details Box ################################
 
         bookList=Listbox(DataFrameRight,width=100,height=12,font=('arial',12,'bold'))
+        bookList.bind('<<ListboxSelect>>', selectedBox)
         bookList.grid(row=0,column=0,padx=10)
         
         
@@ -146,7 +187,7 @@ class Person:
         self.clear_btn = Button(ButtonFrame, text="Clear Data", width=10, height=2, command=clear)
         self.clear_btn.grid(row=0, column=2)
         
-        self.delete_btn = Button(ButtonFrame, text="Delete", width=10, height=2)
+        self.delete_btn = Button(ButtonFrame, text="Delete", width=10, height=2, command=delete)
         self.delete_btn.grid(row=0, column=3)
 
         self.update_btn = Button(ButtonFrame, text="Update", width=10, height=2)

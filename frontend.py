@@ -34,6 +34,8 @@ class Person:
             results = db.displayInfo()
             for row in results:
                 bookList.insert(END, row)
+            # list_item = bookList.get(ANCHOR)
+            # print(list_item)
 
         def clear():
             # clicked.get().delete(0, END)
@@ -45,6 +47,9 @@ class Person:
             self.author_entry.delete(0, END)
             self.borrowed_entry.delete(0, END)
             self.due_entry.delete(0, END)
+        
+        def exit():
+            window.destroy()
 
         MainFrame=Frame(self.window, bg="white")
         MainFrame.grid()  #THIS IS MAIN FRAME OUR WINDOW
@@ -130,6 +135,7 @@ class Person:
         bookList=Listbox(DataFrameRight,width=100,height=12,font=('arial',12,'bold'))
         bookList.grid(row=0,column=0,padx=10)
         
+        
         ##################### Buttons ################################
         self.add_btn = Button(ButtonFrame, text="Add Data", width=10, height=2, command=addInfo)
         self.add_btn.grid(row=0, column=0)
@@ -149,9 +155,8 @@ class Person:
         self.delete_btn = Button(ButtonFrame, text="Search Data", width=10, height=2)
         self.delete_btn.grid(row=0, column=5)
 
-        self.exit_btn = Button(ButtonFrame, text="Exit", width=10, height=2)
+        self.exit_btn = Button(ButtonFrame, text="Exit", width=10, height=2, command=exit)
         self.exit_btn.grid(row=0, column=6)
-
 
 if __name__ == '__main__':
     window = Tk()

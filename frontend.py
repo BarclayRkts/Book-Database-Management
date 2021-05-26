@@ -35,6 +35,17 @@ class Person:
             for row in results:
                 bookList.insert(END, row)
 
+        def clear():
+            # clicked.get().delete(0, END)
+            self.bookTitle_entry.delete(0, END)
+            self.firstName_entry.delete(0, END)
+            self.lastName_entry.delete(0, END)
+            self.phone_entry .delete(0, END)
+            self.bookID_entry.delete(0, END)
+            self.author_entry.delete(0, END)
+            self.borrowed_entry.delete(0, END)
+            self.due_entry.delete(0, END)
+
         MainFrame=Frame(self.window, bg="white")
         MainFrame.grid()  #THIS IS MAIN FRAME OUR WINDOW
         TitleFrame=Frame(MainFrame,bd=1,padx=55,pady=8,bg="black",relief=RIDGE)
@@ -126,7 +137,7 @@ class Person:
         self.display_btn = Button(ButtonFrame, text="Display Data", width=10, height=2, command=display)
         self.display_btn.grid(row=0, column=1)
 
-        self.clear_btn = Button(ButtonFrame, text="Clear Data", width=10, height=2)
+        self.clear_btn = Button(ButtonFrame, text="Clear Data", width=10, height=2, command=clear)
         self.clear_btn.grid(row=0, column=2)
         
         self.delete_btn = Button(ButtonFrame, text="Delete", width=10, height=2)

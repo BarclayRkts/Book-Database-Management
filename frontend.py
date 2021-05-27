@@ -87,13 +87,13 @@ class Person:
             window.destroy()
 
         MainFrame=Frame(self.window, bg="white")
-        MainFrame.grid()  #THIS IS MAIN FRAME OUR WINDOW
+        MainFrame.grid()
 
         DetailsFrame=LabelFrame(MainFrame,font=('arial',12,'bold'),bd=1,width=450,height=300,bg="Ghost White",relief=RIDGE,text="Book Details\n")
         DetailsFrame.pack(side=BOTTOM, padx=20,pady=20) # This is for Book Details Box
         
         ButtonFrame=Frame(MainFrame,bd=1,width=1350,height=70,padx=18,pady=10,relief=RIDGE)
-        ButtonFrame.pack(side=BOTTOM)#
+        ButtonFrame.pack(side=BOTTOM)
 
         DataFrame=Frame(MainFrame,bd=9,width=1300,height=400,padx=20,pady=20,bg="white",relief=RIDGE)
         DataFrame.pack(side=BOTTOM)
@@ -177,15 +177,6 @@ class Person:
 
         self.clear_btn = Button(ButtonFrame, text="Clear Data", width=10, height=2, command=clear)
         self.clear_btn.grid(row=0, column=2)
-        
-        # self.delete_btn = Button(ButtonFrame, text="Delete", width=10, height=2, command=delete)
-        # self.delete_btn.grid(row=0, column=3)
-
-        # self.update_btn = Button(ButtonFrame, text="Update", width=10, height=2)
-        # self.update_btn.grid(row=0, column=4)
-        
-        # self.delete_btn = Button(ButtonFrame, text="Search Data", width=10, height=2)
-        # self.delete_btn.grid(row=0, column=5)
 
         self.exit_btn = Button(ButtonFrame, text="Exit", width=10, height=2, command=exit)
         self.exit_btn.grid(row=0, column=6)

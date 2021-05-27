@@ -35,8 +35,11 @@ class Person:
             
         def display():
             results = db.displayInfo()
+            bookList.delete(0,END)
+            
             for row in results:
                 bookList.insert(END, row)
+            
             # list_item = bookList.get(ANCHOR)
             # print(list_item)
 
@@ -53,7 +56,9 @@ class Person:
         
         def delete():
             display()
-            list_item = bookList.get(ANCHOR)
+            list_item = bookList.curselection(sb)
+            bookList.delete(list_item)
+
             print(list_item)
         
         def selectedBox(event):
